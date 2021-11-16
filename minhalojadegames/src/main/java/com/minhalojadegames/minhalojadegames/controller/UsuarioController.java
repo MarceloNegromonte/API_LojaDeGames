@@ -2,6 +2,7 @@ package com.minhalojadegames.minhalojadegames.controller;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,21 +19,21 @@ import com.minhalojadegames.minhalojadegames.model.UsuarioLogin;
 import com.minhalojadegames.minhalojadegames.service.UsuarioService;
 
 @RestController
-@RequestMapping
+@RequestMapping("/usuario")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UsuarioController {
 
 	@Autowired
 	private UsuarioService usuarioService;
 	
-	@PutMapping("/logar")
-	public ResponseEntity<UsuarioLogin> Autentication(@RequestBody Optional<UsuarioLogin> user){ 
+	@PostMapping("/logar")
+	public ResponseEntity<UsuarioLogin> Autentication(@Valid @RequestBody Optional<UsuarioLogin> user){ 
 		return usuarioService.logar(user).map(resp -> ResponseEntity.ok(resp)) 
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
 
-	@PutMapping("/logar")
-	public ResponseEntity<Usuario> post(@RequestBody Usuario user){
+	@PostMapping("/cadastrar")
+	public ResponseEntity<Usuario> post(@Valid @RequestBody Usuario user){
 		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.cadastrarUsuario(user));
 	}
 }

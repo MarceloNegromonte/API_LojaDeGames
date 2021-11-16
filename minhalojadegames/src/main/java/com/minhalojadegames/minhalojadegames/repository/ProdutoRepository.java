@@ -9,5 +9,5 @@ import com.minhalojadegames.minhalojadegames.model.Produto;
 
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
-	public List<Produto> findAllByValorContainingIgnoreCase(double valor);
+	public List<Produto> findByValor(double valor);
 }

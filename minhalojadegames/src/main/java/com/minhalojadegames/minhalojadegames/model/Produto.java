@@ -30,8 +30,8 @@ public class Produto {
 	@NotNull
 	private int quantidade;
 	
-	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("categoria")
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("produto")
 	private List<Categoria> categoria;
 
 	public long getId() {
